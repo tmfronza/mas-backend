@@ -12,10 +12,10 @@ class CreateCourseUnityService {
 
         const courseUnityRepository = getRepository(CourseUnity);
 
-        const courseUnity = {
+        const courseUnity = courseUnityRepository.create ({
             name,
             description
-        }
+        })
 
         await courseUnityRepository.save(courseUnity);
 

@@ -2,6 +2,7 @@ import {Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn} from 'typeor
 import {v4 as uuid} from 'uuid';
 import { CourseUnity } from './CourseUnity';
 
+@Entity("activies")
 class Activy {
 
     constructor(){
@@ -20,8 +21,7 @@ class Activy {
     activy_date: string;
 
     @Column()
-    course_unit_id: string
-    //Acho que tem que rever se não é algo relacioado ao model CourseUnity
+    course_unit_id: string;
 
     @CreateDateColumn()
     created_at: Date;
