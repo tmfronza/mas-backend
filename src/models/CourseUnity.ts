@@ -23,8 +23,8 @@ class CourseUnity {
     @CreateDateColumn()
     created_at: Date;
 
-    @OneToMany(() => Activy, activy => activy.course_unity)
-    activies: Activy[]
+    // @OneToMany(() => Activy, activy => activy.course_unit)
+    // activies: Activy[]
 }
 
 export {CourseUnity}

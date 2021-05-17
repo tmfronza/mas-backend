@@ -8,8 +8,7 @@ interface ActivyData {
 }
 
 class CreateActivyService {
-
-    async execute({name, activy_date, course_unit_id}: ActivyData){
+    public async execute({name, activy_date, course_unit_id}: ActivyData): Promise<Activy>{
 
         const activyRepository = getRepository(Activy);
 
@@ -17,7 +16,7 @@ class CreateActivyService {
             name,
             activy_date,
             course_unit_id
-        })
+        });
 
         await activyRepository.save(activy);
 
@@ -25,4 +24,4 @@ class CreateActivyService {
     }
 }
 
-export {CreateActivyService}
+export {CreateActivyService}    
