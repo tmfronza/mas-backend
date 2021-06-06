@@ -12,32 +12,42 @@ interface AuthData {
 class AuthenticateUserService {
     public async execute({email,password}:AuthData): Promise<String | {}> {
 
-        const usersRepository = getRepository(User)
+        const usersRepository = getRepository(User);
 
         const user = await usersRepository.findOne({email});
 
         if(!user) {
             return {
-                error: 'User not found'
+                error: 'User not exist'
             }
         }
         
-        const comparePassword = compare(password, user.password)
+        const comparePassword = compare(password, user.password);
         
         if(!comparePassword) {
             return {
-                error: 'Incorret Password'
+                error: 'Incorrect Password'
             }
         }
 
-        const {secret,expiresIn} = authConfig.jwt
+        const {privateKey,expiresIn} = authConfig.jwt
 
-        const token = sign({"role":"user"}, secret, {
+        const token = sign({"role":"user"}, privateKey, {
+            algorithm:'RS256',
             subject: user.id,
             expiresIn
         })
 
-        return token;
+        const {id, name, email:emailUser} = user
+
+        return {
+            user:{
+                id,
+                name,
+                email: emailUser
+            },
+            token
+        };
     }   
 }
 

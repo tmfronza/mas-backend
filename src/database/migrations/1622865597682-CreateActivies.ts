@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateActivies1621091935754 implements MigrationInterface {
+export class CreateActivies1622865597682 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -10,32 +10,36 @@ export class CreateActivies1621091935754 implements MigrationInterface {
                     {
                         name:"id",
                         type:"varchar",
-                        isPrimary: true
+                        isPrimary: true,
                     },
                     {
                         name:"name",
-                        type:"varchar"
+                        type:"varchar",
                     },
                     {
                         name:"activy_date",
-                        type:"varchar"
+                        type:"timestamp",
                     },
                     {
-                        name:"course_unit_id",
-                        type:"varchar"
+                        name:"grade",
+                        type:"decimal",
+                    },
+                    {
+                        name:"courseUnitId",
+                        type:"varchar",
                     },
                     {
                         name:"created_at",
                         type:"timestamp",
-                        default:"now()"
+                        default:"now()",
                     }
                 ],
                 foreignKeys: [
                     {
-                        name: 'ActivyCourseUnit',
-                        referencedTableName: 'course_unities',
+                        name:'ActivyCourseUnit',
+                        referencedTableName:'course_unities',
                         referencedColumnNames: ['id'],
-                        columnNames: ['course_unit_id']
+                        columnNames: ['courseUnitId']
                     }
                 ]
             })
@@ -43,6 +47,7 @@ export class CreateActivies1621091935754 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("activies")
+        await queryRunner.dropTable("users");
     }
+
 }
