@@ -1,12 +1,13 @@
 import {getRepository} from 'typeorm';
-import {User} from "../models/User";
+import {User} from "../models/User"
 
 interface UserData {
     id?: string
 }
 
 class GetUserService {
-    public async execute({id}: UserData): Promise<User | {}> {
+    public async execute({id}:UserData): Promise<User | {}> {
+        
         if(!id){
             return {
                 error:'id not found in the parameter'
